@@ -9,6 +9,10 @@ const userConfigOptions = {
     'imageViewer': "loupe",
     'terminal': "kitty", // This is only for shell actions
   },
+  'brightness': {
+    'device': 'amdgpu_bl1',
+    'minPercent': 5,
+  },
   'time': {
     'dateFormatLong': "%a, %m/%d", // On bar
     'dateFormat': "%m/%d", // On notif time
