@@ -84,7 +84,7 @@ export const BluetoothIndicator = () => Widget.Stack({
     ,
 });
 
-const BluetoothDevices = () => Widget.Box({
+export const BluetoothDevices = () => Widget.Box({
     className: 'spacing-h-5',
     setup: self => self.hook(Bluetooth, self => {
         self.children = Bluetooth.connected_devices.map((device) => {
@@ -272,10 +272,11 @@ export const StatusIcons = (props = {}) => Widget.Box({
             optionalKeyboardLayoutInstance,
             NotificationIndicator(),
             NetworkIndicator(),
-            Widget.Box({
-                className: 'spacing-h-5',
-                children: [BluetoothIndicator(), BluetoothDevices()]
-            })
+            BluetoothIndicator(),
+            // Widget.Box({
+            //     className: 'spacing-h-5',
+            //     children: [BluetoothIndicator(), BluetoothDevices()]
+            // })
         ]
     })
 });

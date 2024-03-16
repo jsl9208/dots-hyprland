@@ -16,6 +16,7 @@ import {
     ModuleRawInput
 } from "./quicktoggles.js";
 import ModuleNotificationList from "./notificationlist.js";
+import { BluetoothDevices } from '../.commonwidgets/statusicons.js';
 import { ModuleCalendar } from "./calendar.js";
 import { getDistroIcon } from '../.miscutils/system.js';
 
@@ -39,6 +40,8 @@ const timeRow = Box({
             ,
         }),
         Widget.Box({ hexpand: true }),
+
+        BluetoothDevices(),
         // ModuleEditIcon({ hpack: 'end' }), // TODO: Make this work
         ModuleReloadIcon({ hpack: 'end' }),
         ModuleSettingsIcon({ hpack: 'end' }),
