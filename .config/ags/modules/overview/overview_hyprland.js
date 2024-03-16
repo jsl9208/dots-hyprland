@@ -4,7 +4,7 @@
 //
 const { Gdk, Gtk } = imports.gi;
 const { Gravity } = imports.gi.Gdk;
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../variables.js';
+import { SCREEN_REAL_HEIGHT, SCREEN_REAL_WIDTH } from '../../variables.js';
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Variable from 'resource:///com/github/Aylur/ags/variable.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
@@ -57,13 +57,13 @@ export default () => {
         if (screenCoords.x != 0) x -= screenCoords.x;
         if (screenCoords.y != 0) y -= screenCoords.y;
         // Other offscreen adjustments
-        if (x + w <= 0) x += (Math.floor(x / SCREEN_WIDTH) * SCREEN_WIDTH);
+        if (x + w <= 0) x += (Math.floor(x / SCREEN_REAL_WIDTH) * SCREEN_REAL_WIDTH);
         else if (x < 0) { w = x + w; x = 0; }
-        if (y + h <= 0) x += (Math.floor(y / SCREEN_HEIGHT) * SCREEN_HEIGHT);
+        if (y + h <= 0) x += (Math.floor(y / SCREEN_REAL_HEIGHT) * SCREEN_REAL_HEIGHT);
         else if (y < 0) { h = y + h; y = 0; }
         // Truncate if offscreen
-        if (x + w > SCREEN_WIDTH) w = SCREEN_WIDTH - x;
-        if (y + h > SCREEN_HEIGHT) h = SCREEN_HEIGHT - y;
+        if (x + w > SCREEN_REAL_WIDTH) w = SCREEN_REAL_WIDTH - x;
+        if (y + h > SCREEN_REAL_HEIGHT) h = SCREEN_REAL_HEIGHT - y;
 
         const appIcon = Widget.Icon({
             icon: substitute(c),
@@ -140,8 +140,8 @@ export default () => {
                                 truncate: 'end',
                                 className: `${xwayland ? 'txt txt-italic' : 'txt'}`,
                                 css: `
-                                font-size: ${Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * userOptions.overview.scale / 14.6}px;
-                                margin: 0px ${Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * userOptions.overview.scale / 10}px;
+                                font-size: ${Math.min(SCREEN_REAL_WIDTH, SCREEN_REAL_HEIGHT) * userOptions.overview.scale / 14.6}px;
+                                margin: 0px ${Math.min(SCREEN_REAL_WIDTH, SCREEN_REAL_HEIGHT) * userOptions.overview.scale / 10}px;
                             `,
                                 // If the title is too short, include the class
                                 label: (title.length <= 1 ? `${c}: ${title}` : title),
@@ -212,8 +212,8 @@ export default () => {
             className: 'overview-tasks-workspace-number',
             label: `${index}`,
             css: `
-                margin: ${Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * userOptions.overview.scale * userOptions.overview.wsNumMarginScale}px;
-                font-size: ${SCREEN_HEIGHT * userOptions.overview.scale * userOptions.overview.wsNumScale}px;
+                margin: ${Math.min(SCREEN_REAL_WIDTH, SCREEN_REAL_HEIGHT) * userOptions.overview.scale * userOptions.overview.wsNumMarginScale}px;
+                font-size: ${SCREEN_REAL_HEIGHT * userOptions.overview.scale * userOptions.overview.wsNumScale}px;
             `,
             setup: (self) => self.hook(Hyprland.active.workspace, (self) => {
                 // Update when going to new ws group
@@ -226,8 +226,8 @@ export default () => {
             className: 'overview-tasks-workspace',
             vpack: 'center',
             css: `
-                min-width: ${SCREEN_WIDTH * userOptions.overview.scale}px;
-                min-height: ${SCREEN_HEIGHT * userOptions.overview.scale}px;
+                min-width: ${SCREEN_REAL_WIDTH * userOptions.overview.scale}px;
+                min-height: ${SCREEN_REAL_HEIGHT * userOptions.overview.scale}px;
             `,
             children: [Widget.EventBox({
                 hexpand: true,
