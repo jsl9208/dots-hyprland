@@ -2,10 +2,10 @@ import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Brightness from '../../../services/brightness.js';
 import Indicator from '../../../services/indicator.js';
+const Hyprland = (await import('resource:///com/github/Aylur/ags/service/hyprland.js')).default;
 
-const WindowTitle = async () => {
+const WindowTitle = () => {
     try {
-        const Hyprland = (await import('resource:///com/github/Aylur/ags/service/hyprland.js')).default;
         return Widget.Scrollable({
             hexpand: true, vexpand: true,
             hscroll: 'automatic', vscroll: 'never',
@@ -38,7 +38,7 @@ const WindowTitle = async () => {
     }
 }
 
-const OptionalWindowTitleInstance = await WindowTitle();
+// const OptionalWindowTitleInstance = await WindowTitle();
 
 export default () => Widget.EventBox({
     onScrollUp: () => {
@@ -65,7 +65,7 @@ export default () => Widget.EventBox({
                             vertical: true,
                             className: 'bar-space-button',
                             children: [
-                                OptionalWindowTitleInstance,
+                                WindowTitle(),
                             ]
                         })]
                     }),
