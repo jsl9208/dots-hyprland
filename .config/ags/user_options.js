@@ -10,7 +10,7 @@ const userConfigOptions = {
     'terminal': "kitty", // This is only for shell actions
   },
   'brightness': {
-    'device': 'amdgpu_bl1',
+    'device': 'amdgpu_bl2',
     'minPercent': 5,
   },
   'time': {
