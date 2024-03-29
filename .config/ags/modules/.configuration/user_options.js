@@ -7,11 +7,17 @@ let configOptions = {
     'ai': {
         'defaultGPTProvider': "openai",
         'defaultTemperature': 0.9,
+        'enhancements': true,
+        'useHistory': true,
         'writingCursor': " ...", // Warning: Using weird characters can mess up Markdown rendering
     },
     'animations': {
+        'choreographyDelay': 35,
         'durationSmall': 110,
         'durationLarge': 180,
+    },
+    'appearance': {
+        'keyboardUseFlag': false, // Use flag emoji instead of abbreviation letters
     },
     'apps': {
         'imageViewer': "loupe",
@@ -20,6 +26,9 @@ let configOptions = {
     'battery': {
         'low': 20,
         'critical': 10,
+        'warnLevels': [20, 15, 5],
+        'warnTitles': ["Low battery", "Very low battery", 'Critical Battery'],
+        'warnMessages': ["Plug in the charger", "You there?", 'PLUG THE CHARGER ALREADY'],
     },
     'music': {
         'preferredPlayer': "plasma-browser-integration",
@@ -36,7 +45,8 @@ let configOptions = {
     },
     'sidebar': {
         'imageColumns': 2,
-        'imageBooruCount': 6,
+        'imageBooruCount': 20,
+        'imageAllowNsfw': false,
     },
     'search': {
         'engineBaseUrl': "https://www.google.com/search?q=",
@@ -83,6 +93,10 @@ let configOptions = {
         },
         'sidebar': {
             'apis': {
+                'nextTab': "Page_Down",
+                'prevTab': "Page_Up",
+            },
+            'options': { // Right sidebar
                 'nextTab': "Page_Down",
                 'prevTab': "Page_Up",
             },
