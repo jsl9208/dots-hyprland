@@ -23,7 +23,7 @@ class BrightnessService extends Service {
         percent = clamp(percent, this._minValue, 1);
         this._screenValue = percent;
 
-        Utils.execAsync(`${this._brightnessctlCmd} s ${percent * 100}% -q`)
+        Utils.execAsync(`${this._brightnessctlCmd} -S ${percent * 100}%`)
             .then(() => {
                 // signals has to be explicity emitted
                 this.emit('screen-changed', percent);
@@ -38,12 +38,13 @@ class BrightnessService extends Service {
     constructor() {
         super();
         const device = userOptions.brightness.device;
-        this._brightnessctlCmd = `brightnessctl ${device ? `-d ${device}` : ''}`
+        this._brightnessctlCmd = `brillo`;
         this._minValue = clamp((userOptions.brightness.minPercent || 0)/100, 0, 1);
 
-        const current = Number(exec(`${this._brightnessctlCmd} g`));
-        const max = Number(exec(`${this._brightnessctlCmd} m`));
-        this._screenValue = current / max;
+        const current = Number(exec(`${this._brightnessctlCmd}`));
+        // const max = Number(exec(`${this._brightnessctlCmd} m`));
+        // this._screenValue = current / max;
+        this._screenValue = current / 100;
     }
 
     // overwriting connectWidget method, lets you
